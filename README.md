@@ -1,8 +1,7 @@
 # skript-Chat-formatter
+### English version is available below.
 
 このSkriptファイルは、Vault + LuckPerms 環境に対応したチャット・TABリストへのPrefix/Suffix表示管理ツールです。
-
-**English version is available below.**
 
 ## 特徴
 

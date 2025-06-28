@@ -76,7 +76,7 @@
 
 ## 導入手順
 
-1. `LuckPerms_Display.sk` を `plugins/Skript/scripts/` に配置
+1. `skript-chat-fomatter.sk` を `plugins/Skript/scripts/` に配置
 2. ファイル内の `設定` を必要に応じて編集
 3. サーバーを起動
 

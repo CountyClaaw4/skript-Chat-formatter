@@ -1,0 +1,197 @@
+# LuckPerms chat formatter V1.0.0
+
+# ========================================
+#                 config
+# ========================================
+options:
+
+    # 利用可能なプレースホルダー
+    # %prefix%: プレイヤーのLuckPermsで設定されたprefix
+    # %suffix%: プレイヤーのLuckPermsで設定されたsuffix
+    # %player%: プレイヤーの表示名
+    # %message%: 入力されたメッセージ内容(チャットファーマット設定のみ利用可能)
+    
+    
+    # チャットフォーマット設定
+    # chat-enabled: チャットフォーマット設定を有効にするかどうか
+    # chat-format: チャット欄のフォーマット
+
+    chat-enabled: true
+    chat-format: "<!prefix!player!suffix&7> &f!message"
+    
+    # TABリスト設定
+    # tab-enabled: TABリストのフォーマット設定を有効化するかどうか
+    # tab-format: TABリストのフォーマット
+
+    tab-enabled: true
+    tab-format: "!prefix!player!suffix"
+
+    # 参加/退出メッセージフォーマット設定
+    # join-enabled: 参加時のメッセージのフォーマットを有効化するか
+    # quit-enabled: 退出時のメッセージのフォーマットを有効化するか
+    # join-masseage: 参加時のメッセージのフォーマット
+    # quit-masseage: 退出時のメッセージのフォーマット
+
+    join-enabled: true
+    quit-enabled: true
+
+    join-message: "&a+ !prefix!player!suffix &aがサーバーに参加しました"
+    quit-message: "&c- !prefix!player!suffix &cがサーバーから退出しました"
+    
+    tab-update-interval: 60
+
+# ========================================
+#                Codes
+#             DO NOT TOUCH
+# ========================================
+function getVaultPrefix(p: player) :: text:
+    set {_prefix} to {_p}'s prefix
+    if {_prefix} is not set:
+        return ""
+    return {_prefix}
+function getVaultSuffix(p: player) :: text:
+    set {_suffix} to {_p}'s suffix
+    if {_suffix} is not set:
+        return ""
+    return {_suffix}
+on chat:
+    if {@chat-enabled} is true:
+        cancel event
+        set {_prefix} to getVaultPrefix(player)
+        set {_suffix} to getVaultSuffix(player)
+        set {_player-name} to display name of player
+        set {_message} to message
+        set {_formatted} to {@chat-format}
+        replace all "!prefix" with "%{_prefix}%" in {_formatted}
+        replace all "!suffix" with "%{_suffix}%" in {_formatted}
+        replace all "!player" with "%{_player-name}%" in {_formatted}
+        replace all "!message" with "%{_message}%" in {_formatted}
+        replace all "&" with "§" in {_formatted}
+        if player has permission "minecraft.command.say":
+            replace all "&" with "§" in {_message}
+            broadcast {_formatted}
+function updateTabList(p: player):
+    if {@tab-enabled} is true:
+        set {_prefix} to getVaultPrefix({_p})
+        set {_suffix} to getVaultSuffix({_p})
+        set {_player-name} to display name of {_p}
+        set {_formatted} to {@tab-format}
+        replace all "!prefix" with "%{_prefix}%" in {_formatted}
+        replace all "!suffix" with "%{_suffix}%" in {_formatted}
+        replace all "!player" with "%{_player-name}%" in {_formatted}
+        replace all "&" with "§" in {_formatted}
+        set tab list name of {_p} to {_formatted}
+    else:
+        set tab list name of {_p} to display name of {_p}
+on join:
+    if {@join-enabled} is true:
+        wait 5 ticks
+        set {_prefix} to getVaultPrefix(player)
+        set {_suffix} to getVaultSuffix(player)
+        set {_player-name} to display name of player
+        set {_formatted} to {@join-message}
+        replace all "!prefix" with "%{_prefix}%" in {_formatted}
+        replace all "!suffix" with "%{_suffix}%" in {_formatted}
+        replace all "!player" with "%{_player-name}%" in {_formatted}
+        replace all "&" with "§" in {_formatted}
+        set join message to "%{_formatted}%"
+    wait 1 second
+    updateTabList(player)
+on quit:
+    if {@quit-enabled} is true:
+        set {_prefix} to getVaultPrefix(player)
+        set {_suffix} to getVaultSuffix(player)
+        set {_player-name} to display name of player
+        set {_formatted} to {@quit-message}
+        replace all "!prefix" with "%{_prefix}%" in {_formatted}
+        replace all "!suffix" with "%{_suffix}%" in {_formatted}
+        replace all "!player" with "%{_player-name}%" in {_formatted}
+        replace all "&" with "§" in {_formatted}
+        set quit message to "%{_formatted}%"
+every {@tab-update-interval} seconds:
+    if {@tab-enabled} is true:
+        loop all players:
+            updateTabList(loop-player)
+on command "/lp user * parent *":
+    wait 2 seconds
+    if {@tab-enabled} is true:
+        if executor is a player:
+            updateTabList(executor)
+        loop all players:
+            updateTabList(loop-player)
+on command "/lp group * meta *":
+    wait 2 seconds
+    if {@tab-enabled} is true:
+        loop all players:
+            updateTabList(loop-player)
+command /updatetab:
+    permission: op
+    trigger:
+        if {@tab-enabled} is true:
+            loop all players:
+                updateTabList(loop-player)
+            send "&aTABリストを更新しました。"
+        else:
+            send "&cTAB機能が無効になっています。"
+command /checkconfig:
+    permission: op
+    trigger:
+        set {_chat} to {@chat-enabled}
+        set {_tab} to {@tab-enabled}
+        set {_join} to {@join-enabled}
+        set {_quit} to {@quit-enabled}
+        set {_interval} to {@tab-update-interval}
+        send "&7========== 設定確認 =========="
+        send "&7チャット機能: %{_chat}%"
+        send "&7TAB機能: %{_tab}%"
+        send "&7入室メッセージ: %{_join}%"
+        send "&7退室メッセージ: %{_quit}%"
+        send "&7TAB更新間隔: %{_interval}%秒"
+        send "&7============================="
+command /testformat [<player>]:
+    permission: op
+    trigger:
+        if arg-1 is not set:
+            set {_target} to player
+        else:
+            set {_target} to arg-1
+        set {_prefix} to getVaultPrefix({_target})
+        set {_suffix} to getVaultSuffix({_target})
+        send "&7========== フォーマット確認 =========="
+        send "&7プレイヤー: &f%{_target}%"
+        send "&7Prefix: &f%{_prefix}%"
+        send "&7Suffix: &f%{_suffix}%"
+        send "&7"
+        send "&7チャット表示例:"
+        if {@chat-enabled} is true:
+            set {_chat-test} to {@chat-format}
+            replace all "!prefix" with "%{_prefix}%" in {_chat-test}
+            replace all "!suffix" with "%{_suffix}%" in {_chat-test}
+            replace all "!player" with "%{_target}%" in {_chat-test}
+            replace all "!message" with "テストメッセージ" in {_chat-test}
+            replace all "&" with "§" in {_chat-test}
+            send " %{_chat-test}%"
+        else:
+            send " &c(チャット機能無効)"
+        send "&7"
+        send "&7TAB表示例:"
+        if {@tab-enabled} is true:
+            set {_tab-test} to {@tab-format}
+            replace all "!prefix" with "%{_prefix}%" in {_tab-test}
+            replace all "!suffix" with "%{_suffix}%" in {_tab-test}
+            replace all "!player" with "%{_target}%" in {_tab-test}
+            replace all "&" with "§" in {_tab-test}
+            send " %{_tab-test}%"
+        else:
+            send " &c(TAB機能無効)"
+        send "&7================================="
+command /reloadformat:
+    permission: op
+    trigger:
+        if {@tab-enabled} is true:
+            loop all players:
+                updateTabList(loop-player)
+        send "&a設定を再読み込みしました！"
+on load:
+    execute console command "/say &a[LuckPerms Display] &f設定が読み込まれました"
+    execute console command "/say &7管理者向けコマンド: /checkconfig, /testformat, /updatetab, /reloadformat"

@@ -12,9 +12,9 @@
 
 ## 対応環境
 
-* Minecraft バージョン: 任意（VaultとLuckPermsが対応していればOK）
+* Minecraft バージョン: 任意（前提プラグインが対応していればOK）
 * サーバー: Paper / Spigot / Purpur など
-* 必須プラグイン:
+* 前提プラグイン:
   * Skript
   * Vault
   * LuckPerms

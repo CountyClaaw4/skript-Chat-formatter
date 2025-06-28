@@ -17,7 +17,7 @@
 * 必須プラグイン:
   * Skript
   * Vault
-  * LuckPerms（Prefix/Suffix管理に使用）
+  * LuckPerms
 
 ## 設定方法（`options`）
 

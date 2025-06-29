@@ -84,7 +84,7 @@
 
 ## ライセンス
 
-このプロジェクトは [MITライセンス](./LICENSE) のもとで公開されています。
+このプロジェクトは [MITライセンス](LICENSE.txt) のもとで公開されています。
 
 ## お問い合わせ
 
@@ -177,7 +177,7 @@ This Skript file is a prefix/suffix display management tool for chat and TAB lis
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
 
 ## Contact
 

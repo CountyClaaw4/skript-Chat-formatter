@@ -82,6 +82,10 @@
 2. ファイル内の `設定` を必要に応じて編集
 3. サーバーを起動
 
+## ライセンス
+
+このプロジェクトは [MITライセンス](./LICENSE) のもとで公開されています。
+
 ## お問い合わせ
 
 何か問題があれば、DiscordやGitHub Issuesなどでご連絡ください。
@@ -170,6 +174,10 @@ This Skript file is a prefix/suffix display management tool for chat and TAB lis
 1. Place `skript-chat-formatter.sk` into `plugins/Skript/scripts/`
 2. Edit the `options` section in the file as needed
 3. Start your server
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ## Contact
 

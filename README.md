@@ -95,7 +95,7 @@
 
 
 - **Vault**  
-  [LGPLv3](https://github.com/MilkBowl/Vault/blob/master/LICENSE.txt)（GNU Lesser General Public License v3.0）
+  [LGPLv3](https://github.com/MilkBowl/Vault/blob/master/licence.txt)（GNU Lesser General Public License v3.0）
 
 - **LuckPerms**  
   [MIT License](https://github.com/LuckPerms/LuckPerms/blob/master/LICENSE.txt)
@@ -207,7 +207,7 @@ This project is licensed under the [MIT License](LICENSE.txt).
   → The scripts written for this project are also subject to the GPLv3.
 
 - **Vault**  
-  [LGPLv3](https://github.com/MilkBowl/Vault/blob/master/LICENSE.txt)（GNU Lesser General Public License v3.0）
+  [LGPLv3](https://github.com/MilkBowl/Vault/blob/master/licence.txt)（GNU Lesser General Public License v3.0）
 
 - **LuckPerms**  
   [MIT License](https://github.com/LuckPerms/LuckPerms/blob/master/LICENSE.txt)

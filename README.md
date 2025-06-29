@@ -87,23 +87,6 @@
 
 ---
 
-### 使用しているライブラリとライセンス / Third-Party Libraries and Licenses
-
-- **Skript**  
-  [GPLv3](https://github.com/SkriptLang/Skript/blob/master/LICENSE)（GNU General Public License v3.0）  
-  ※ 本プロジェクトのスクリプトコードにも GPLv3 が適用されます。  
-  → The scripts written for this project are also subject to the GPLv3.
-
-- **Vault**  
-  [LGPLv3](https://github.com/MilkBowl/Vault/blob/master/LICENSE.txt)（GNU Lesser General Public License v3.0）
-
-- **LuckPerms**  
-  [MIT License](https://github.com/LuckPerms/LuckPerms/blob/master/LICENSE.txt)
-
-- **Minecraft 利用規約 / Minecraft Terms of Use**  
-  https://www.minecraft.net/ja-jp/terms  
-  https://www.minecraft.net/en-us/terms
-
 ### 使用しているライブラリとライセンス
 
 - **Skript**  

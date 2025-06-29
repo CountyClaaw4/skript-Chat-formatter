@@ -56,10 +56,10 @@
 
 | プレースホルダー    | 内容                       |
 | ----------- | ------------------------ |
-| `%prefix%`  | Vault経由のLuckPerms Prefix |
-| `%suffix%`  | Vault経由のLuckPerms Suffix |
-| `%player%`  | プレイヤーの表示名（display name）  |
-| `%message%` | チャットで発言したメッセージ（チャット用のみ）  |
+| `!prefix`  | Vault経由のLuckPerms Prefix |
+| `!suffix`  | Vault経由のLuckPerms Suffix |
+| `!player`  | プレイヤーの表示名（display name）  |
+| `!message` | チャットで発言したメッセージ（チャット用のみ）  |
 
 ## 管理コマンド一覧
 
